@@ -7,9 +7,23 @@ public class Player : MonoBehaviour
     private Rigidbody2D rigidBody2D;
     private float moveX;
     [SerializeField] private float speed;
+    [SerializeField] private GameObject[] healthBars;
+    private int indexOfHealthBar = 2;
+    private float health = 3;
     private void Awake()
     {
         rigidBody2D = this.GetComponent<Rigidbody2D>();
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            health -= 1;
+            Destroy(healthBars[indexOfHealthBar]);
+            indexOfHealthBar -= 1;
+            Destroy(other.gameObject);
+        }
     }
 
     private void FixedUpdate()
