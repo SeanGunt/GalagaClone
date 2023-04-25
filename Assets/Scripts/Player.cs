@@ -43,5 +43,6 @@ public class Player : MonoBehaviour
     {
         Time.timeScale = 0f;
         loseScreen.SetActive(true);
+        GameManager.canShoot = false;
     }
 }

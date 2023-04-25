@@ -15,7 +15,7 @@ public class Fire : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && GameManager.canShoot && !PauseScreen.GamePaused)
         {
             audioSource.PlayOneShot(fireSound);
             Instantiate(bullet, bulletSpawnPoint.transform.position, Quaternion.identity);

@@ -7,10 +7,14 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject[] enemies;
     [SerializeField] private RandomDisconnect randomDisconnect;
     private int indexToSpawn = -1;
-
     public int timesSpawned = 0;
-
     public GameObject ContinueScreen;
+
+    private void Awake()
+    {
+        indexToSpawn = -1;
+        timesSpawned = 0;
+    }
 
     private void Update()
     {
@@ -32,6 +36,7 @@ public class EnemySpawner : MonoBehaviour
     {
         StartCoroutine(EndLevel());
         ContinueScreen.SetActive(true);
+        GameManager.canShoot = false;
     }
 
     IEnumerator EndLevel() 
