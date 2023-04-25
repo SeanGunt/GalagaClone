@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject[] healthBars;
     private int indexOfHealthBar = 2;
     private float health = 3;
+
+    public GameObject loseScreen;
     private void Awake()
     {
         rigidBody2D = this.GetComponent<Rigidbody2D>();
@@ -30,5 +32,16 @@ public class Player : MonoBehaviour
     {
         moveX = Input.GetAxis("Horizontal");
         rigidBody2D.velocity = new Vector2(moveX,0f) * speed;
+
+        if (health < 1)
+        {
+            LoserMoment();
+        }
+    }
+
+    private void LoserMoment()
+    {
+        Time.timeScale = 0f;
+        loseScreen.SetActive(true);
     }
 }
